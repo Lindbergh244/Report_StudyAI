@@ -13123,7 +13123,15 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#31532;1&#31456;&#65306;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">&#31532;1&#31456;&#65306;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;<a class="anchor-link" href="#&#31532;1&#31456;&#65306;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">&#182;</a></h3><p>&nbsp; &nbsp; &nbsp; 回帰問題とは、ある入力(数値)から出力(連続値)を予測する問題</p>
+<h2 id="&#12514;&#12487;&#12522;&#12531;&#12464;&#12398;&#27969;&#12428;">&#12514;&#12487;&#12522;&#12531;&#12464;&#12398;&#27969;&#12428;<a class="anchor-link" href="#&#12514;&#12487;&#12522;&#12531;&#12464;&#12398;&#27969;&#12428;">&#182;</a></h2><ol>
+<li>問題設定</li>
+<li>データ選定</li>
+<li>データの前処理</li>
+<li>モデルの選定</li>
+<li>モデルの学習(パラメータの推定)</li>
+<li>モデルの評価</li>
+</ol>
+<p>機械学習を使うことを前提(目的)にしない</p>
 
 </div>
 </div>
@@ -13131,13 +13139,23 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1-1.&#12487;&#12540;&#12479;&#12398;&#24418;&#24335;">1-1.&#12487;&#12540;&#12479;&#12398;&#24418;&#24335;<a class="anchor-link" href="#1-1.&#12487;&#12540;&#12479;&#12398;&#24418;&#24335;">&#182;</a></h3><ul>
-<li>入力は、m次元のベクトル(m=1の場合は、スカラ) </li>
-<li>入力ベクトルの各要素は、説明変数(または特徴量)と呼ぶ   </li>
+<h2 id="&#31532;1&#31456;&#65306;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">&#31532;1&#31456;&#65306;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;<a class="anchor-link" href="#&#31532;1&#31456;&#65306;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">&#182;</a></h2><p>&nbsp; &nbsp; &nbsp;回帰問題とは、ある入力(数値)から出力(連続値)を予測する問題<br>
+&nbsp; &nbsp; &nbsp;例えば、株価予測、住宅価格予測など<br>
+&nbsp; &nbsp; &nbsp;線形回帰は直線で、非線形回帰は曲線で近似したもの</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.&#12487;&#12540;&#12479;&#12398;&#24418;&#24335;">1.&#12487;&#12540;&#12479;&#12398;&#24418;&#24335;<a class="anchor-link" href="#1.&#12487;&#12540;&#12479;&#12398;&#24418;&#24335;">&#182;</a></h3><h4 id="1-1.&#22238;&#24112;&#12391;&#25201;&#12358;&#12487;&#12540;&#12479;">1-1.&#22238;&#24112;&#12391;&#25201;&#12358;&#12487;&#12540;&#12479;<a class="anchor-link" href="#1-1.&#22238;&#24112;&#12391;&#25201;&#12358;&#12487;&#12540;&#12479;">&#182;</a></h4><ul>
+<li>入力は、m次元のベクトル(m=1の場合は、スカラ)  </li>
+<li>入力ベクトルの各要素は、説明変数(または特徴量)と呼ぶ    </li>
 <li>出力はスカラー値(目的変数と呼ぶ)</li>
 </ul>
+<p>上記用語が出現した場合は、回帰モデルのことだと推測できる</p>
 <p>&nbsp; &nbsp; &nbsp;  $ w = (w_1,w_2,\cdots,w_m)^T  \in \mathbb{ R }^m$  &nbsp; &nbsp; &nbsp;   $y \in \mathbb{ R }^1$</p>
-<p>&nbsp; &nbsp; &nbsp;  線形回帰は直線で、非線形回帰は曲線で近似したもの</p>
 
 </div>
 </div>
@@ -13145,12 +13163,13 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2-1.&#32218;&#24418;&#22238;&#24112;">2-1.&#32218;&#24418;&#22238;&#24112;<a class="anchor-link" href="#2-1.&#32218;&#24418;&#22238;&#24112;">&#182;</a></h3><ul>
+<h3 id="2.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">2.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;<a class="anchor-link" href="#2.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">&#182;</a></h3><h4 id="2-1.&#32218;&#24418;&#22238;&#24112;">2-1.&#32218;&#24418;&#22238;&#24112;<a class="anchor-link" href="#2-1.&#32218;&#24418;&#22238;&#24112;">&#182;</a></h4><ul>
 <li>教師あり学習(回答付きデータから学習)   </li>
 <li>入力とm次元パラメータの線形結合を出力するモデル  </li>
 </ul>
 <p>&nbsp; &nbsp; &nbsp;  $ w = (w_1,w_2,･･･,w_m)^T  \in \mathbb{ R }^m$</p>
 <p>&nbsp; &nbsp; &nbsp;  $ \hat{y} = w^Tx + b =\displaystyle \sum_{ j = 1 }^{ m } w_j x_j +b  $</p>
+<p>&nbsp; &nbsp; &nbsp; ^ は予測値を表す。</p>
 
 </div>
 </div>
@@ -13158,7 +13177,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2-2.&#32218;&#24418;&#32080;&#21512;">2-2.&#32218;&#24418;&#32080;&#21512;<a class="anchor-link" href="#2-2.&#32218;&#24418;&#32080;&#21512;">&#182;</a></h3><ul>
+<h4 id="2-2.&#32218;&#24418;&#32080;&#21512;">2-2.&#32218;&#24418;&#32080;&#21512;<a class="anchor-link" href="#2-2.&#32218;&#24418;&#32080;&#21512;">&#182;</a></h4><ul>
 <li>入力ベクトルと道のパラメータの各要素を掛け算し、足し合わせたもの</li>
 <li>入力ベクトルとの線形結合に加え、切片も足し合わせる</li>
 <li>出力は1次元(スカラ)となる</li>
@@ -13170,7 +13189,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2-3.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;&#12398;&#12497;&#12521;&#12513;&#12540;&#12479;">2-3.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;&#12398;&#12497;&#12521;&#12513;&#12540;&#12479;<a class="anchor-link" href="#2-3.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;&#12398;&#12497;&#12521;&#12513;&#12540;&#12479;">&#182;</a></h3><ul>
+<h4 id="2-3.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;&#12398;&#12497;&#12521;&#12513;&#12540;&#12479;">2-3.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;&#12398;&#12497;&#12521;&#12513;&#12540;&#12479;<a class="anchor-link" href="#2-3.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;&#12398;&#12497;&#12521;&#12513;&#12540;&#12479;">&#182;</a></h4><ul>
 <li>特徴量が予測値に対し、どのように影響を与えるのかを決定させる重みの集合</li>
 <li>正の(負の)重みをつける場合、その特徴量の値を増加させると、予測の値が増加(減少)</li>
 <li>重みが大きければ(0であれば)、その特徴量は予測に大きな影響力を持つ(全く影響しない)</li>
@@ -13182,7 +13201,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2-4.&#32218;&#24418;&#21336;(m=1)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)">2-4.&#32218;&#24418;&#21336;(m=1)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)<a class="anchor-link" href="#2-4.&#32218;&#24418;&#21336;(m=1)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)">&#182;</a></h3><p>&nbsp; &nbsp; &nbsp;  データは回帰 <span style="color: red; ">**直線** </span>に誤差が加わり、観測されていると仮定</p>
+<h4 id="2-4.&#32218;&#24418;&#21336;(m=1)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)">2-4.&#32218;&#24418;&#21336;(m=1)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)<a class="anchor-link" href="#2-4.&#32218;&#24418;&#21336;(m=1)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp;  データは回帰 <span style="color: red; ">直線 </span>に誤差が加わり、観測されていると仮定</p>
 <p>&nbsp; &nbsp; &nbsp; $y = w_0 + w_1 x_1 +  \varepsilon $  &nbsp; &nbsp;$y:目的関数 \quad w_0:切片 \quad w_1:回帰係数 \quad x_1:説明変数 \quad \varepsilon:誤差 $</p>
 <p>&nbsp; &nbsp; &nbsp;未知パラメータ(切片、回帰係数)は、最小二乗法により推定</p>
 
@@ -13192,7 +13211,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2-5.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;(&#34892;&#21015;&#34920;&#29694;)">2-5.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;(&#34892;&#21015;&#34920;&#29694;)<a class="anchor-link" href="#2-5.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;(&#34892;&#21015;&#34920;&#29694;)">&#182;</a></h3><p>&nbsp; &nbsp; &nbsp;連立方程式は、行列(転置行列)で表現</p>
+<h4 id="2-5.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;(&#34892;&#21015;&#34920;&#29694;)">2-5.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;(&#34892;&#21015;&#34920;&#29694;)<a class="anchor-link" href="#2-5.&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;(&#34892;&#21015;&#34920;&#29694;)">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp;連立方程式は、行列(転置行列)で表現</p>
 
 </div>
 </div>
@@ -13200,7 +13219,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2-6.&#32218;&#24418;&#21336;(m=&#22810;&#27425;&#20803;)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)">2-6.&#32218;&#24418;&#21336;(m=&#22810;&#27425;&#20803;)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)<a class="anchor-link" href="#2-6.&#32218;&#24418;&#21336;(m=&#22810;&#27425;&#20803;)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)">&#182;</a></h3><p>&nbsp; &nbsp; &nbsp;  データは回帰 <span style="color: red; ">**直面** </span>に誤差が加わり、観測されていると仮定</p>
+<h4 id="2-6.&#32218;&#24418;&#21336;(m=&#22810;&#27425;&#20803;)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)">2-6.&#32218;&#24418;&#21336;(m=&#22810;&#27425;&#20803;)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)<a class="anchor-link" href="#2-6.&#32218;&#24418;&#21336;(m=&#22810;&#27425;&#20803;)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#20206;&#23450;)">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp;  データは回帰 <span style="color: red; ">直面 </span>に誤差が加わり、観測されていると仮定</p>
 <p>&nbsp; &nbsp; &nbsp;次元が増えている以外、m=1の場合と同じ</p>
 
 </div>
@@ -13209,13 +13228,12 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3-1.&#12514;&#12487;&#12523;&#12398;&#35413;&#20385;">3-1.&#12514;&#12487;&#12523;&#12398;&#35413;&#20385;<a class="anchor-link" href="#3-1.&#12514;&#12487;&#12523;&#12398;&#35413;&#20385;">&#182;</a></h3><ul>
-<li>データの分割<ul>
-<li>データを学習用と検証用データに分割する</li>
-<li>学習データで学習し、検証用データで汎化性能(モデルの精度)を測定する</li>
-</ul>
-</li>
-</ul>
+<h3 id="3.&#12514;&#12487;&#12523;&#12398;&#35413;&#20385;">3.&#12514;&#12487;&#12523;&#12398;&#35413;&#20385;<a class="anchor-link" href="#3.&#12514;&#12487;&#12523;&#12398;&#35413;&#20385;">&#182;</a></h3><h4 id="3-1.&#12487;&#12540;&#12479;&#12398;&#20998;&#21106;">3-1.&#12487;&#12540;&#12479;&#12398;&#20998;&#21106;<a class="anchor-link" href="#3-1.&#12487;&#12540;&#12479;&#12398;&#20998;&#21106;">&#182;</a></h4>
+<pre><code>- データを学習用(train)と検証用(test)データに分割する
+- 学習データで学習し、検証用データで汎化性能(モデルの精度)を測定する
+
+</code></pre>
+<p>&nbsp; &nbsp; &nbsp;一般的には、約3割を検証用データとする</p>
 
 </div>
 </div>
@@ -13223,7 +13241,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="4-1.&#12514;&#12487;&#12523;(&#12497;&#12521;&#12513;&#12540;&#12479;)&#12398;&#25512;&#23450;">4-1.&#12514;&#12487;&#12523;(&#12497;&#12521;&#12513;&#12540;&#12479;)&#12398;&#25512;&#23450;<a class="anchor-link" href="#4-1.&#12514;&#12487;&#12523;(&#12497;&#12521;&#12513;&#12540;&#12479;)&#12398;&#25512;&#23450;">&#182;</a></h3><ul>
+<h3 id="4.&#12514;&#12487;&#12523;(&#12497;&#12521;&#12513;&#12540;&#12479;)&#12398;&#25512;&#23450;">4.&#12514;&#12487;&#12523;(&#12497;&#12521;&#12513;&#12540;&#12479;)&#12398;&#25512;&#23450;<a class="anchor-link" href="#4.&#12514;&#12487;&#12523;(&#12497;&#12521;&#12513;&#12540;&#12479;)&#12398;&#25512;&#23450;">&#182;</a></h3><h4 id="4-1.&#12497;&#12521;&#12513;&#12540;&#12479;&#12398;&#25512;&#23450;(1)">4-1.&#12497;&#12521;&#12513;&#12540;&#12479;&#12398;&#25512;&#23450;(1)<a class="anchor-link" href="#4-1.&#12497;&#12521;&#12513;&#12540;&#12479;&#12398;&#25512;&#23450;(1)">&#182;</a></h4><ul>
 <li><p>平均二乗誤差(MSE)</p>
 <ul>
 <li>データとモデル出力の二乗誤差</li>
@@ -13235,9 +13253,7 @@ div#notebook {
 <li><p>最小二乗法</p>
 <ul>
 <li>学習データの平均二乗誤差を最小とする</li>
-<li><p>学習データの平均二乗誤差の最小化は、その勾配が0になる点</p>
-<p>$ \frac{ \partial }{ \partial w } MSE_{train} = 0 $</p>
-</li>
+<li>学習データの平均二乗誤差の最小化は、その勾配が0になる点    </li>
 </ul>
 </li>
 </ul>
@@ -13245,18 +13261,436 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="4.2-&#12497;&#12521;&#12513;&#12540;&#12479;&#12398;&#25512;&#23450;(2)">4.2 &#12497;&#12521;&#12513;&#12540;&#12479;&#12398;&#25512;&#23450;(2)<a class="anchor-link" href="#4.2-&#12497;&#12521;&#12513;&#12540;&#12479;&#12398;&#25512;&#23450;(2)">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp;平均二乗誤差を最小にするパラメータは、その勾配が0になる点。</p>
+<p>&nbsp; &nbsp; &nbsp;$ \hat{w} = arg \min_{w \in \mathbb{ R }^m} MSE_{train} $
+&nbsp; &nbsp; &nbsp;    $ \frac{ \partial }{ \partial w } MSE_{train} = 0 $</p>
+<p>結果的なパラメータ予測値は、</p>
+<p>&nbsp; &nbsp; &nbsp;    $ \hat{w} = (X^{(train)} X^{(train)} ) ^{-1} X^{(train)T} y^{(train)} $</p>
 
-    </div>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.&#12495;&#12531;&#12474;&#12458;&#12531;">5.&#12495;&#12531;&#12474;&#12458;&#12531;<a class="anchor-link" href="#5.&#12495;&#12531;&#12474;&#12458;&#12531;">&#182;</a></h3><h4 id="5-1.-&#12521;&#12452;&#12502;&#12521;&#12522;">5-1. &#12521;&#12452;&#12502;&#12521;&#12522;<a class="anchor-link" href="#5-1.-&#12521;&#12452;&#12502;&#12521;&#12522;">&#182;</a></h4>
+<pre><code>- Pandas: 2次元のようなテーブルを対象にしたデータ解析を支援する機能
+- Numpy: 数学関数ライブラリ
+- sklearn:　線形回帰モデルや、データ分割など
 
+</code></pre>
+<h4 id="5-2.-&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">5-2. &#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;<a class="anchor-link" href="#5-2.-&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp;　<strong>sklearn.linear_model</strong> を使うことで容易にモデル化可能</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#31532;2&#31456;&#65306;&#38750;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">&#31532;2&#31456;&#65306;&#38750;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;<a class="anchor-link" href="#&#31532;2&#31456;&#65306;&#38750;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.&#38750;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">1.&#38750;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;<a class="anchor-link" href="#1.&#38750;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">&#182;</a></h3><ul>
+<li>複雑な非線形構造を内在する現象に対して、使用する</li>
+<li>規定関数とパラメータベクトルの線形結合を使用する</li>
+<li>よく使われる基底関数<ul>
+<li>多項式関数</li>
+<li>ガウス型基底関数(hが小さいほど範囲がせまくなる)</li>
+<li>スプライン/Bスプライン関数</li>
+</ul>
+</li>
+</ul>
+<p>最尤法による予測値</p>
+<p>&nbsp; &nbsp; &nbsp; $ \hat{y} = \Phi( \Phi^{(train)T} \Phi^{(train)} )^{-1} \Phi^{(train)T} y $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-&#27491;&#21063;&#21270;&#27861;">2. &#27491;&#21063;&#21270;&#27861;<a class="anchor-link" href="#2.-&#27491;&#21063;&#21270;&#27861;">&#182;</a></h3><h4 id="2-1.-&#36942;&#23398;&#32722;&#12392;&#26410;&#23398;&#32722;&#12398;&#29366;&#24907;">2-1. &#36942;&#23398;&#32722;&#12392;&#26410;&#23398;&#32722;&#12398;&#29366;&#24907;<a class="anchor-link" href="#2-1.-&#36942;&#23398;&#32722;&#12392;&#26410;&#23398;&#32722;&#12398;&#29366;&#24907;">&#182;</a></h4><ul>
+<li>未学習(underfitting)→学習データに対して、十分小さな誤差が得られない</li>
+<li>過学習→小さな誤差は得られたが、テスト集合誤差との差が大きい</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2-2&#27726;&#21270;&#24615;&#33021;(Generalization)">2-2&#27726;&#21270;&#24615;&#33021;(Generalization)<a class="anchor-link" href="#2-2&#27726;&#21270;&#24615;&#33021;(Generalization)">&#182;</a></h4><ul>
+<li>新しい入力に対する誤差の期待値で定義される</li>
+<li>通常は、検証データでの性能を測ることで推定される</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2-3.-&#27491;&#21063;&#21270;&#27861;">2-3. &#27491;&#21063;&#21270;&#27861;<a class="anchor-link" href="#2-3.-&#27491;&#21063;&#21270;&#27861;">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp;　モデルの複雑さに伴って、その値が大きくなるペナルティ項(正則化項)を課した関数の最小化を&nbsp; &nbsp; &nbsp;　考える<br>
+&nbsp; &nbsp; &nbsp; $ S_{\gamma} = ( y- \Phi w)~{T}(y- \Phi w) + \gamma R(w)  \hspace{10mm} \gamma(&gt;0) $:正則化パラメータ</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2.4-&#12506;&#12490;&#12523;&#12486;&#12451;&#38917;">2.4 &#12506;&#12490;&#12523;&#12486;&#12451;&#38917;<a class="anchor-link" href="#2.4-&#12506;&#12490;&#12523;&#12486;&#12451;&#38917;">&#182;</a></h4><table>
+<thead><tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:center">正則化項</th>
+<th style="text-align:left">特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">直線回帰</td>
+<td style="text-align:center">なし</td>
+<td style="text-align:left">過学習を起こしやすい</td>
+</tr>
+<tr>
+<td style="text-align:left">リッジ回帰</td>
+<td style="text-align:center">L2ノルム</td>
+<td style="text-align:left">過学習を抑えられる</td>
+</tr>
+<tr>
+<td style="text-align:left">ラッソ回帰</td>
+<td style="text-align:center">L1ノルム</td>
+<td style="text-align:left">不要なパラメータ(次元・特徴量)を削ることができる</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.-&#12514;&#12487;&#12523;&#12398;&#35413;&#20385;&#12392;&#36984;&#25246;">3. &#12514;&#12487;&#12523;&#12398;&#35413;&#20385;&#12392;&#36984;&#25246;<a class="anchor-link" href="#3.-&#12514;&#12487;&#12523;&#12398;&#35413;&#20385;&#12392;&#36984;&#25246;">&#182;</a></h3><h4 id="3-2.&#12507;&#12540;&#12523;&#12489;&#12450;&#12454;&#12488;&#27861;">3-2.&#12507;&#12540;&#12523;&#12489;&#12450;&#12454;&#12488;&#27861;<a class="anchor-link" href="#3-2.&#12507;&#12540;&#12523;&#12489;&#12450;&#12454;&#12488;&#27861;">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp;データを分割し、学習用と検証用として使用する方法</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="3-4.-&#12463;&#12525;&#12473;&#12496;&#12522;&#12487;&#12540;&#12471;&#12519;&#12531;(&#20132;&#24046;&#26908;&#35388;)">3-4. &#12463;&#12525;&#12473;&#12496;&#12522;&#12487;&#12540;&#12471;&#12519;&#12531;(&#20132;&#24046;&#26908;&#35388;)<a class="anchor-link" href="#3-4.-&#12463;&#12525;&#12473;&#12496;&#12522;&#12487;&#12540;&#12471;&#12519;&#12531;(&#20132;&#24046;&#26908;&#35388;)">&#182;</a></h4><ul>
+<li>ホールドアウト法の欠点を補う方法</li>
+<li>データをm個に分割し、m-1個で学習、残りで検証する</li>
+<li>これをm回繰り返し、それらの誤差の平均を性能予測値とする  </li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp;　CV値(精度の平均)が、一番小さかったものが、一番いいモデルとなる</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#31532;3&#31456;&#65306;&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;">&#31532;3&#31456;&#65306;&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;<a class="anchor-link" href="#&#31532;3&#31456;&#65306;&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-&#12487;&#12540;&#12479;&#12398;&#24418;&#24335;">1. &#12487;&#12540;&#12479;&#12398;&#24418;&#24335;<a class="anchor-link" href="#1.-&#12487;&#12540;&#12479;&#12398;&#24418;&#24335;">&#182;</a></h3><h4 id="1-1.-&#20998;&#39006;&#21839;&#38988;(&#12463;&#12521;&#12473;&#20998;&#39006;)">1-1. &#20998;&#39006;&#21839;&#38988;(&#12463;&#12521;&#12473;&#20998;&#39006;)<a class="anchor-link" href="#1-1.-&#20998;&#39006;&#21839;&#38988;(&#12463;&#12521;&#12473;&#20998;&#39006;)">&#182;</a></h4><ul>
+<li>ある入力(数値)からクラスに分類する問題</li>
+<li>分類で扱うデータ<ul>
+<li>入力はm次元のベクトル(m=1の時はスカラ)</li>
+<li>出力は0 or１の値  </li>
+</ul>
+</li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp; $ x = (x_{1}, x_{2},\cdots ,x_{m})^{T} \in \mathbb{ R }^{m} \hspace{10mm} y \in \{ 0,1 \} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="1-2.&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">1-2.&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;<a class="anchor-link" href="#1-2.&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#32218;&#24418;&#22238;&#24112;&#12514;&#12487;&#12523;">&#182;</a></h4><ul>
+<li>分類問題を解くための機械学習モデル</li>
+<li>入力からそのラベルを予測するシステム</li>
+<li>入力とパラメータの線形結合をシグモイド関数に入力</li>
+<li>出力はy=1になる確率の値</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;">2. &#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;<a class="anchor-link" href="#2.-&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;">&#182;</a></h3><h4 id="2-1.&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;">2-1.&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;<a class="anchor-link" href="#2-1.&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;">&#182;</a></h4><ul>
+<li>入力とパラメータが線形結合を取るのは線形回帰と同じ</li>
+<li>線形結合の結果をシグモイド関数の入力とする</li>
+<li>ある入力の値に対する出力が1になる確率を表現</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2-2.&#12471;&#12464;&#12514;&#12452;&#12489;&#38306;&#25968;">2-2.&#12471;&#12464;&#12514;&#12452;&#12489;&#38306;&#25968;<a class="anchor-link" href="#2-2.&#12471;&#12464;&#12514;&#12452;&#12489;&#38306;&#25968;">&#182;</a></h4><ul>
+<li>入力のドメインは実数空間</li>
+<li>出力は必ず0～1</li>
+<li>パラメータで形が変わる(aを大きくするとステップ関数に近づく)  </li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp; $ \sigma(x) = \frac{1}{1+exp(-ax)} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2-3.-&#12471;&#12464;&#12514;&#12452;&#12489;&#38306;&#25968;&#12398;&#24615;&#36074;">2-3. &#12471;&#12464;&#12514;&#12452;&#12489;&#38306;&#25968;&#12398;&#24615;&#36074;<a class="anchor-link" href="#2-3.-&#12471;&#12464;&#12514;&#12452;&#12489;&#38306;&#25968;&#12398;&#24615;&#36074;">&#182;</a></h4><ul>
+<li>シグモイド関数の微分は、関数自身で表現可能  </li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp; $ \frac{ \partial \sigma(x) }{ \partial x  } = a \sigma(x)(1-\sigma(x))$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2-4.-&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;&#24335;">2-4. &#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;&#24335;<a class="anchor-link" href="#2-4.-&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#22238;&#24112;&#12514;&#12487;&#12523;&#24335;">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp;　$ P(Y=1|x) = \sigma(w_0 + w_1x_1 + \cdots + w_mx_m) $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2-6.-&#32218;&#24418;&#21336;(m=1)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#36942;&#31243;)">2-6. &#32218;&#24418;&#21336;(m=1)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#36942;&#31243;)<a class="anchor-link" href="#2-6.-&#32218;&#24418;&#21336;(m=1)&#22238;&#24112;&#12514;&#12487;&#12523;(&#12487;&#12540;&#12479;&#12408;&#12398;&#36942;&#31243;)">&#182;</a></h4><ul>
+<li>確率→パラメータの分布から特定のデータがどれほど得られやすいかを表現したもの</li>
+<li>尤度→あるデータを得たときに、分布のパラメータが特定の値であることがどれほどありえそうかを表現したもの</li>
+<li>確率は、パラメータを固定してデータが変化するが、尤度はデータを固定してパラメータが変化</li>
+<li>確率変数が独立を仮定した場合は、同時分布がそれぞれの分布の積になる</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="2-7.-&#23588;&#24230;&#38306;&#25968;">2-7. &#23588;&#24230;&#38306;&#25968;<a class="anchor-link" href="#2-7.-&#23588;&#24230;&#38306;&#25968;">&#182;</a></h4><ul>
+<li>ロジスティック回帰モデルのパラメータの尤度推定を考える</li>
+<li>確率変数Yはベルヌーイ分布に従う</li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp;　$ P(Y=y_n|x_n) = p_n^{y_n}( 1-p_n)^{1-y_n} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.-&#12514;&#12487;&#12523;(&#12497;&#12521;&#12513;&#12540;&#12479;)&#12398;&#25512;&#23450;">3. &#12514;&#12487;&#12523;(&#12497;&#12521;&#12513;&#12540;&#12479;)&#12398;&#25512;&#23450;<a class="anchor-link" href="#3.-&#12514;&#12487;&#12523;(&#12497;&#12521;&#12513;&#12540;&#12479;)&#12398;&#25512;&#23450;">&#182;</a></h3><h4 id="3-1.-&#21516;&#26178;&#30906;&#29575;(&#12497;&#12521;&#12513;&#12540;&#12479;&#12398;&#38306;&#25968;&#8594;&#23588;&#24230;&#38306;&#25968;)">3-1. &#21516;&#26178;&#30906;&#29575;(&#12497;&#12521;&#12513;&#12540;&#12479;&#12398;&#38306;&#25968;&#8594;&#23588;&#24230;&#38306;&#25968;)<a class="anchor-link" href="#3-1.-&#21516;&#26178;&#30906;&#29575;(&#12497;&#12521;&#12513;&#12540;&#12479;&#12398;&#38306;&#25968;&#8594;&#23588;&#24230;&#38306;&#25968;)">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp;尤度関数は同時確率の積</p>
+<p>&nbsp; &nbsp; &nbsp; $同時確率　= L(w_0, w_1, \cdots, w_m) $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="3-2.-&#23550;&#25968;&#23588;&#24230;&#38306;&#25968;&#12398;&#26368;&#22823;&#21270;">3-2. &#23550;&#25968;&#23588;&#24230;&#38306;&#25968;&#12398;&#26368;&#22823;&#21270;<a class="anchor-link" href="#3-2.-&#23550;&#25968;&#23588;&#24230;&#38306;&#25968;&#12398;&#26368;&#22823;&#21270;">&#182;</a></h4><ul>
+<li>対数化することで、積を和にできる</li>
+<li>尤度関数と対数尤度関数の最大になる点は同じ</li>
+<li>対数尤度関数にマイナスをかけて「最小化」する
+&nbsp; &nbsp; &nbsp; $E(w_0,w_1, \cdots, w_m) = -\log L(w_0, w_1, \cdots, w_m) $<br>
+$ \hspace{35mm} = - \sum_{i=1}^{n}  \{ t_n \log p_i + (1-t_n) \log (1-p_n) \}   $</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="3-3.-&#21246;&#37197;&#38477;&#19979;&#27861;">3-3. &#21246;&#37197;&#38477;&#19979;&#27861;<a class="anchor-link" href="#3-3.-&#21246;&#37197;&#38477;&#19979;&#27861;">&#182;</a></h4><ul>
+<li>反復計算でパラメータを逐次的に更新し、最適解を求める方法</li>
+<li>パラメータ更新するのにN個すべてのデータに対する和を求める必要がある  </li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp; $ w^{(k+1)} = w^{(k)} + \eta \sum_{i=1}^{n} (t_i - p_i) x_i $ 
+$ \hspace{10mm} b^{(k+1)} = b^{(k)} + \eta \sum_{i=1}^{n} (t_i - p_i) $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="3-7.-&#30906;&#29575;&#30340;&#21246;&#37197;&#38477;&#19979;&#27861;(SGD)">3-7. &#30906;&#29575;&#30340;&#21246;&#37197;&#38477;&#19979;&#27861;(SGD)<a class="anchor-link" href="#3-7.-&#30906;&#29575;&#30340;&#21246;&#37197;&#38477;&#19979;&#27861;(SGD)">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp; 計算を効率的に行うためのいくつかの手法がある</p>
+<ul>
+<li>確率的勾配降下法<ul>
+<li>データを１つづつランダムに選んで更新</li>
+</ul>
+</li>
+<li>エポック<ul>
+<li>各エポック(データの計算回数)ごとにデータをシャッフルし学習させる</li>
+</ul>
+</li>
+<li>ミニバッチ勾配降下法<ul>
+<li>n個の出たをm(&lt;n)個ずつのかたまりに分けて学習させる(m=50～500)</li>
+<li>m-1の場合は、確率的勾配降下法と同じ</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp; $ w^{k+1} = w^k + \eta ( t_n + p_n) x_n  \hspace{10mm} b^{k+1} = b^k + \eta ( t_n - p_n ) $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4.-&#12514;&#12487;&#12523;&#12398;&#35413;&#20385;">4. &#12514;&#12487;&#12523;&#12398;&#35413;&#20385;<a class="anchor-link" href="#4.-&#12514;&#12487;&#12523;&#12398;&#35413;&#20385;">&#182;</a></h3><h4 id="4-1.-&#28151;&#21516;&#34892;&#21015;(Confusion-Matrix)">4-1. &#28151;&#21516;&#34892;&#21015;(Confusion Matrix)<a class="anchor-link" href="#4-1.-&#28151;&#21516;&#34892;&#21015;(Confusion-Matrix)">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp;<img src="data:image/png;base64, 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" alt="image.png"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="4-2.-&#20998;&#39006;&#12398;&#35413;&#20385;&#26041;&#27861;">4-2. &#20998;&#39006;&#12398;&#35413;&#20385;&#26041;&#27861;<a class="anchor-link" href="#4-2.-&#20998;&#39006;&#12398;&#35413;&#20385;&#26041;&#27861;">&#182;</a></h4><ul>
+<li>正解率(Accuracy)=(TP+TN) ／ (TP+FP+TN+FN)</li>
+<li>再現率(Recall) = TP ／(TP+FN)</li>
+<li>適合率(Precision) ＝ TP／(TP+FP)</li>
+<li>F値　= 2 <em> (precision </em> recall) / (precision + recall)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.-&#12495;&#12531;&#12474;&#12458;&#12531;">5. &#12495;&#12531;&#12474;&#12458;&#12531;<a class="anchor-link" href="#5.-&#12495;&#12531;&#12474;&#12458;&#12531;">&#182;</a></h3><ul>
+<li>欠損データはデータの前処理する<ol>
+<li>データを削除する</li>
+<li>欠損値を何らかの手段(全体の平均を利用する)で補間する</li>
+</ol>
+</li>
+<li>文字列はデータの前処理で数値に置き換える。その場合は新しいカラムを作成する</li>
+<li>仮説がある場合は、その仮説を説明する説明変数(特徴量)を作成して分析する</li>
+<li>決定曲線を図示化するとわかりやすくなる</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#31532;4&#31456;&#65306;&#20027;&#25104;&#20998;&#20998;&#26512;&#22238;&#24112;&#12514;&#12487;&#12523;">&#31532;4&#31456;&#65306;&#20027;&#25104;&#20998;&#20998;&#26512;&#22238;&#24112;&#12514;&#12487;&#12523;<a class="anchor-link" href="#&#31532;4&#31456;&#65306;&#20027;&#25104;&#20998;&#20998;&#26512;&#22238;&#24112;&#12514;&#12487;&#12523;">&#182;</a></h2><ul>
+<li>多変量データの持つ構造をより少数個の指標にまとめる手法<ul>
+<li>情報の損失を少なくする</li>
+<li>分散を最大にする方向への線形変換を行う</li>
+<li>視覚化が可能になり理解度が向上</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-&#12487;&#12540;&#12479;&#12398;&#24418;&#24335;">1. &#12487;&#12540;&#12479;&#12398;&#24418;&#24335;<a class="anchor-link" href="#1.-&#12487;&#12540;&#12479;&#12398;&#24418;&#24335;">&#182;</a></h3><h4 id="1-2.-&#32218;&#24418;&#22793;&#25563;&#24335;">1-2. &#32218;&#24418;&#22793;&#25563;&#24335;<a class="anchor-link" href="#1-2.-&#32218;&#24418;&#22793;&#25563;&#24335;">&#182;</a></h4><p>&nbsp; &nbsp; &nbsp; $ s_j = (s_{1j}, \cdots, s_{nj})^T = \bar{X}a_j \hspace{10mm} a_j: 係数ベクトル $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-&#12450;&#12454;&#12488;&#12521;&#12452;&#12531;">2. &#12450;&#12454;&#12488;&#12521;&#12452;&#12531;<a class="anchor-link" href="#2.-&#12450;&#12454;&#12488;&#12521;&#12452;&#12531;">&#182;</a></h3><p>&nbsp; &nbsp; &nbsp;　線形返還後の分散</p>
+<p>$　\hspace{20mm} Var(s_j) = a_j^T Var( \bar{X} ) a_j　$</p>
+<p>&nbsp; &nbsp; &nbsp;　$a_j^T a_j = 1$という制約条件化では、ラグランジュ関数を最大にする係数ベクトルを見つければよい</p>
+<p>&nbsp; &nbsp; &nbsp;　その結果として、以下の式が導出される</p>
+<p>$　\hspace{20mm} Var( \bar{X} ) a_j = \lambda a_j　$</p>
+<p>&nbsp; &nbsp; &nbsp;　固有値と固有ベクトルを求めればよくなる</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.-&#20027;&#25104;&#20998;&#12539;&#23492;&#19982;&#29575;">3. &#20027;&#25104;&#20998;&#12539;&#23492;&#19982;&#29575;<a class="anchor-link" href="#3.-&#20027;&#25104;&#20998;&#12539;&#23492;&#19982;&#29575;">&#182;</a></h3><ul>
+<li>主成分→ k番目の固有値に対応する固有ベクトルで変換された特徴量を第k主成分と呼ぶ</li>
+<li>寄与率→　どれだけの情報を保持できているかを示したもの。よく使うのは累積寄与率  </li>
+</ul>
+<p>$ \hspace{20mm} 累積寄与率 \hspace{10mm}  r_k = \frac{ \sum_{j=1}^{k} \lambda_j}   {\sum_{i=1}^{m} \lambda_i} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#31532;5&#31456;&#65306;&#12450;&#12523;&#12468;&#12522;&#12474;&#12512;">&#31532;5&#31456;&#65306;&#12450;&#12523;&#12468;&#12522;&#12474;&#12512;<a class="anchor-link" href="#&#31532;5&#31456;&#65306;&#12450;&#12523;&#12468;&#12522;&#12474;&#12512;">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-k&#36817;&#20621;&#27861;">1. k&#36817;&#20621;&#27861;<a class="anchor-link" href="#1.-k&#36817;&#20621;&#27861;">&#182;</a></h3><ul>
+<li>分類問題のための機械学習方法</li>
+<li>近傍k個のデータから識別する</li>
+<li>k個のクラスラベルの中で最も多きラベルを割り当てる</li>
+</ul>
+<p>&nbsp; &nbsp; &nbsp;kによって変化する</p>
+<ul>
+<li>kを大きくすると決定境界は滑らかになる</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-k&#24179;&#22343;&#27861;">2. k&#24179;&#22343;&#27861;<a class="anchor-link" href="#2.-k&#24179;&#22343;&#27861;">&#182;</a></h3><ul>
+<li>教師なし学習のアルゴリズム</li>
+<li>クラスタリング手法</li>
+<li>与えられたデータをk個のクラスタ(グループ)に分類する</li>
+</ul>
+<ul>
+<li>アルゴリズム<ol>
+<li>各クラスタ中心の初期値をk個設定する</li>
+<li>各データ点に対し、各クラスタ中心との距離を計算し、一番近いクラスタを割り当てる</li>
+<li>各クラスタの平均ベクトル(中心)を計算し、中心を更新する</li>
+<li>2.3を繰り返す</li>
+</ol>
+</li>
+</ul>
+
+</div>
+</div>
 </div>
     </div>
   </div>
